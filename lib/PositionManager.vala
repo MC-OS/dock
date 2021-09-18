@@ -418,10 +418,10 @@ namespace Plank
 			Logger.verbose ("PositionManager.update_dimensions ()");
 			
 			// height of the visible (cursor) rect of the dock
-			var height = IconSize + top_offset + bottom_offset;
+			var height = IconSize + top_offset + bottom_offset + 26;
 			
 			// height of the dock background image, as drawn
-			var background_height = int.max (0, height);
+			var background_height = int.max (0, height - 26);
 			
 			if (top_offset < 0)
 				height -= top_offset;

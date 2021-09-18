@@ -426,7 +426,7 @@ namespace Plank
 			start2 = new DateTime.now_local ();
 #endif
 			// draw background-layer
-			draw_dock_background (main_cr, background_rect, x_offset, y_offset);
+			draw_dock_background (main_cr, background_rect, x_offset, y_offset + 26);
 #if BENCHMARK
 			end2 = new DateTime.now_local ();
 			benchmark.add ("background render time - %f ms".printf (end2.difference (start2) / 1000.0));
@@ -441,7 +441,7 @@ namespace Plank
 				if (item.IsVisible && dragged_item != item) {
 					var draw_value = position_manager.get_draw_value_for_item (item);
 					draw_item (item_cr, item, draw_value, frame_time);
-					draw_item_shadow (shadow_cr, item, draw_value);
+					// draw_item_shadow (shadow_cr, item, draw_value);
 				}
 #if BENCHMARK
 				end2 = new DateTime.now_local ();
@@ -536,7 +536,7 @@ namespace Plank
 				y_offset -= (int) (y * hide_progress);
 			}
 
-			cr.set_source_surface (background_buffer.Internal, background_rect.x + x_offset, background_rect.y + y_offset);
+			cr.set_source_surface (background_buffer.Internal, background_rect.x + x_offset, background_rect.y + y_offset - 52);
 			cr.paint ();
 		}
 
@@ -783,14 +783,14 @@ namespace Plank
 			var icon_surface = get_item_surface (item, icon_size).copy ();
 			unowned Cairo.Context icon_cr = icon_surface.Context;
 
-			Surface? icon_overlay_surface = null;
-			if (item.CountVisible || item.ProgressVisible)
-				icon_overlay_surface = item.get_foreground_surface (icon_size, icon_size, item_buffer, (DrawDataFunc<DockItem>) draw_item_foreground);
+			//  Surface? icon_overlay_surface = null;
+			//  if (item.CountVisible || item.ProgressVisible)
+			//  	icon_overlay_surface = item.get_foreground_surface (icon_size, icon_size, item_buffer, (DrawDataFunc<DockItem>) draw_item_foreground);
 
-			if (icon_overlay_surface != null) {
-				icon_cr.set_source_surface (icon_overlay_surface.Internal, 0, 0);
-				icon_cr.paint ();
-			}
+			//  if (icon_overlay_surface != null) {
+			//  	icon_cr.set_source_surface (icon_overlay_surface.Internal, 0, 0);
+			//  	icon_cr.paint ();
+			//  }
 
 #if BENCHMARK
 			var end = new DateTime.now_local ();
@@ -819,7 +819,7 @@ namespace Plank
 				cr.scale (1.0 / window_scale_factor, 1.0 / window_scale_factor);
 			}
 			var draw_region = draw_value.draw_region;
-			cr.set_source_surface (icon_surface.Internal, draw_region.x * window_scale_factor, draw_region.y * window_scale_factor);
+			cr.set_source_surface (icon_surface.Internal, draw_region.x * window_scale_factor, (draw_region.y - 26) * window_scale_factor);
 			if (draw_value.opacity < 1.0)
 				cr.paint_with_alpha (draw_value.opacity);
 			else
@@ -947,7 +947,7 @@ namespace Plank
 			default:
 			case Gtk.PositionType.BOTTOM:
 				x = item_rect.x + item_rect.width / 2.0 - indicator_surface.Width / 2.0;
-				y = item_buffer.Height - indicator_surface.Height / 2.0 - 2.0 * theme.get_bottom_offset () - indicator_surface.Height / 24.0;
+				y = item_buffer.Height - indicator_surface.Height / 2.0 - 2.0 * (theme.get_bottom_offset () - 26) - indicator_surface.Height / 24.0;
 				break;
 			case Gtk.PositionType.TOP:
 				x = item_rect.x + item_rect.width / 2.0 - indicator_surface.Width / 2.0;
