@@ -266,9 +266,9 @@ namespace Plank
 				var hide_time = int64.max (0LL, frame_time - last_hide);
 				if (hide_time < hide_duration) {
 					if (controller.hide_manager.Hidden)
-						hide_progress = easing_for_mode (AnimationMode.EASE_IN_CUBIC, hide_time, hide_duration);
+						hide_progress = easing_for_mode (AnimationMode.LINEAR, hide_time, hide_duration);
 					else
-						hide_progress = 1.0 - easing_for_mode (AnimationMode.EASE_OUT_CUBIC, hide_time, hide_duration);
+						hide_progress = 1.0 - easing_for_mode (AnimationMode.LINEAR, hide_time, hide_duration);
 				} else {
 					hide_progress = (controller.hide_manager.Hidden ? 1.0 : 0.0);
 				}
@@ -819,7 +819,7 @@ namespace Plank
 				cr.scale (1.0 / window_scale_factor, 1.0 / window_scale_factor);
 			}
 			var draw_region = draw_value.draw_region;
-			cr.set_source_surface (icon_surface.Internal, draw_region.x * window_scale_factor, (draw_region.y - 26) * window_scale_factor);
+			cr.set_source_surface (icon_surface.Internal, draw_region.x * window_scale_factor, draw_region.y * window_scale_factor);
 			if (draw_value.opacity < 1.0)
 				cr.paint_with_alpha (draw_value.opacity);
 			else
@@ -947,7 +947,7 @@ namespace Plank
 			default:
 			case Gtk.PositionType.BOTTOM:
 				x = item_rect.x + item_rect.width / 2.0 - indicator_surface.Width / 2.0;
-				y = item_buffer.Height - indicator_surface.Height / 2.0 - 2.0 * (theme.get_bottom_offset () - 26) - indicator_surface.Height / 24.0;
+				y = item_buffer.Height - indicator_surface.Height / 2.0 - 2.0 * (theme.get_bottom_offset ()) - indicator_surface.Height / 24.0;
 				break;
 			case Gtk.PositionType.TOP:
 				x = item_rect.x + item_rect.width / 2.0 - indicator_surface.Width / 2.0;

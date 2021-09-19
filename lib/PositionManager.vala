@@ -373,7 +373,7 @@ namespace Plank
 			items_offset  = (int) (2 * LineWidth + (HorizPadding > 0 ? HorizPadding : 0));
 			
 			top_offset = theme.get_top_offset () + TopPadding;
-			bottom_offset = theme.get_bottom_offset () + BottomPadding;
+			bottom_offset = theme.get_bottom_offset () + BottomPadding + 26;
 			
 			if (top_offset < 0)
 				extra_hide_offset = IconShadowSize;
@@ -421,7 +421,7 @@ namespace Plank
 			var height = IconSize + top_offset + bottom_offset + 26;
 			
 			// height of the dock background image, as drawn
-			var background_height = int.max (0, height - 26);
+			var background_height = int.max (0, height - 52);
 			
 			if (top_offset < 0)
 				height -= top_offset;
@@ -949,7 +949,7 @@ namespace Plank
 			
 			var item_padding = ItemPadding;
 			var top_padding = (top_offset < 0 ? 0 : top_offset);
-			var bottom_padding = bottom_offset;
+			var bottom_padding = bottom_offset + 26;
 			var width = val.icon_size, height = val.icon_size;
 			
 			// Apply scalable padding

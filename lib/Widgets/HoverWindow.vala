@@ -89,7 +89,7 @@ namespace Plank
 			switch (position) {
 			case Gtk.PositionType.BOTTOM:
 				x = x - width / 2;
-				y = y - height - PADDING;
+				y = y - height - PADDING + 26;
 				break;
 			case Gtk.PositionType.TOP:
 				x = x - width / 2;
