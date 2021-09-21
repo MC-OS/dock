@@ -993,10 +993,10 @@ namespace Plank
 			var x_offset = 0, y_offset = 0;
 
 			if (urgent_glow_buffer == null) {
-				var urgent_color = get_styled_color ();
-				urgent_color.add_hue (theme.UrgentHueShift);
-				urgent_color.set_sat (1.0);
-				urgent_glow_buffer = theme.create_urgent_glow (position_manager.GlowSize, urgent_color, main_buffer);
+				 var urgent_color = get_styled_color ();
+				  urgent_color.add_hue (theme.UrgentHueShift);
+				  urgent_color.set_sat (1.0);
+			 	urgent_glow_buffer = theme.create_urgent_glow (position_manager.GlowSize, urgent_color, main_buffer);
 			}
 
 			position_manager.get_urgent_glow_position (item, out x_offset, out y_offset);
