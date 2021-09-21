@@ -1,4 +1,6 @@
-# Plank
+# etyShell Dock
+
+## Plank
 
 Plank is meant to be the simplest dock on the planet. The goal is to provide
 just what a dock needs and absolutely nothing more. It is, however, a library

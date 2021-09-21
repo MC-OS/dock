@@ -266,9 +266,9 @@ namespace Plank
 				var hide_time = int64.max (0LL, frame_time - last_hide);
 				if (hide_time < hide_duration) {
 					if (controller.hide_manager.Hidden)
-						hide_progress = easing_for_mode (AnimationMode.LINEAR, hide_time, hide_duration);
+						hide_progress = easing_for_mode (AnimationMode.EASE_IN_CUBIC, hide_time, hide_duration);
 					else
-						hide_progress = 1.0 - easing_for_mode (AnimationMode.LINEAR, hide_time, hide_duration);
+						hide_progress = 1.0 - easing_for_mode (AnimationMode.EASE_OUT_CUBIC, hide_time, hide_duration);
 				} else {
 					hide_progress = (controller.hide_manager.Hidden ? 1.0 : 0.0);
 				}
