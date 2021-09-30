@@ -39,8 +39,6 @@ namespace Plank
 		Gtk.ComboBoxText cb_position;
 		[GtkChild]
 		Gtk.ComboBoxText cb_alignment;
-		[GtkChild]
-		Gtk.ComboBoxText cb_items_alignment;
 		
 		[GtkChild]
 		Gtk.SpinButton sp_hide_delay;
@@ -122,9 +120,6 @@ namespace Plank
 			case "IconSize":
 				adj_iconsize.value = prefs.IconSize;
 				break;
-			case "ItemsAlignment":
-				cb_items_alignment.active_id = ((int) prefs.ItemsAlignment).to_string ();
-				break;
 			case "HideMode":
 				var hide_none = (prefs.HideMode != HideType.NONE);
 				sw_hide.set_active (hide_none);
@@ -196,13 +191,7 @@ namespace Plank
 		void alignment_changed (Gtk.ComboBox widget)
 		{
 			prefs.Alignment = (Gtk.Align) int.parse (widget.get_active_id ());
-			cb_items_alignment.sensitive = (prefs.Alignment == Gtk.Align.FILL);
 			s_offset.sensitive = (prefs.Alignment == Gtk.Align.CENTER);
-		}
-		
-		void items_alignment_changed (Gtk.ComboBox widget)
-		{
-			prefs.ItemsAlignment = (Gtk.Align) int.parse (widget.get_active_id ());
 		}
 		
 		void hide_toggled (GLib.Object widget, ParamSpec param)
@@ -297,7 +286,6 @@ namespace Plank
 			sw_lock_items.notify["active"].connect (lock_items_toggled);
 			sw_pressure_reveal.notify["active"].connect (pressure_reveal_toggled);
 			cb_alignment.changed.connect (alignment_changed);
-			cb_items_alignment.changed.connect (items_alignment_changed);
 		}
 		
 		void disconnect_signals ()
@@ -319,7 +307,6 @@ namespace Plank
 			sw_lock_items.notify["active"].disconnect (lock_items_toggled);
 			sw_pressure_reveal.notify["active"].disconnect (pressure_reveal_toggled);
 			cb_alignment.changed.disconnect (alignment_changed);
-			cb_items_alignment.changed.disconnect (items_alignment_changed);
 		}
 		
 		void init_dock_tab ()
@@ -364,8 +351,6 @@ namespace Plank
 			sw_lock_items.set_active (prefs.LockItems);
 			sw_pressure_reveal.set_active (prefs.PressureReveal);
 			cb_alignment.active_id = ((int) prefs.Alignment).to_string ();
-			cb_items_alignment.active_id = ((int) prefs.ItemsAlignment).to_string ();
-			cb_items_alignment.sensitive = (prefs.Alignment == Gtk.Align.FILL);
 		}
 		
 		void init_docklets_tab ()

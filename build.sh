@@ -4,3 +4,5 @@ cd build/
 sudo ninja
 sudo ninja install
 cd ../
+killall plank
+plank

@@ -194,36 +194,6 @@ along with plank.  If not, see <http://www.gnu.org/licenses/>.
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="l_icon_alignment">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Icon Alignment:</property>
-                <property name="justify">right</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">4</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBoxText" id="cb_items_alignment">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <items>
-                  <item id="1" translatable="yes">Start</item>
-                  <item id="2" translatable="yes">End</item>
-                  <item id="3" translatable="yes">Center</item>
-                </items>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="top_attach">4</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="l_iconsize">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
