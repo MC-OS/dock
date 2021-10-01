@@ -53,8 +53,6 @@ namespace Plank
 		Gtk.Adjustment adj_unhide_delay;
 		[GtkChild]
 		Gtk.Adjustment adj_iconsize;
-		[GtkChild]
-		Gtk.Adjustment adj_offset;
 
 		[GtkChild]
 		Gtk.Switch sw_hide;
@@ -136,9 +134,6 @@ namespace Plank
 						cb_display_plug.set_active (pos);
 					pos++;
 				}
-				break;
-			case "Offset":
-				adj_offset.value = prefs.Offset;
 				break;
 			case "PinnedOnly":
 				sw_show_unpinned.set_active (!prefs.PinnedOnly);
@@ -246,12 +241,7 @@ namespace Plank
 		{
 			prefs.IconSize = (int) adj.value;
 		}
-		
-		void offset_changed (Gtk.Adjustment adj)
-		{
-			prefs.Offset = (int) adj.value;
-		}
-		
+
 		void hide_delay_changed (Gtk.Adjustment adj)
 		{
 			prefs.HideDelay = (int) adj.value;
@@ -278,7 +268,6 @@ namespace Plank
 			adj_unhide_delay.value_changed.connect (unhide_delay_changed);
 			cb_display_plug.changed.connect (monitor_changed);
 			adj_iconsize.value_changed.connect (iconsize_changed);
-			adj_offset.value_changed.connect (offset_changed);
 			sw_hide.notify["active"].connect (hide_toggled);
 			sw_primary_display.notify["active"].connect (primary_display_toggled);
 			sw_workspace_only.notify["active"].connect (workspace_only_toggled);
@@ -299,7 +288,6 @@ namespace Plank
 			adj_unhide_delay.value_changed.disconnect (unhide_delay_changed);
 			cb_display_plug.changed.disconnect (monitor_changed);
 			adj_iconsize.value_changed.disconnect (iconsize_changed);
-			adj_offset.value_changed.disconnect (offset_changed);
 			sw_hide.notify["active"].disconnect (hide_toggled);
 			sw_primary_display.notify["active"].disconnect (primary_display_toggled);
 			sw_workspace_only.notify["active"].disconnect (workspace_only_toggled);
@@ -342,8 +330,6 @@ namespace Plank
 			sp_unhide_delay.sensitive = (prefs.HideMode != HideType.NONE);
 			
 			adj_iconsize.value = prefs.IconSize;
-			adj_offset.value = prefs.Offset;
-			s_offset.sensitive = (prefs.Alignment == Gtk.Align.CENTER);
 			sw_hide.set_active (prefs.HideMode != HideType.NONE);
 			sw_primary_display.set_active (prefs.Monitor == "");
 			sw_workspace_only.set_active (prefs.CurrentWorkspaceOnly);
