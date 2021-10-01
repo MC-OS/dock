@@ -34,18 +34,16 @@ namespace Plank
 		[GtkChild]
 		Gtk.ComboBoxText cb_hidemode;
 		[GtkChild]
-		Gtk.ComboBoxText cb_display_plug;
-		[GtkChild]
 		Gtk.ComboBoxText cb_position;
 		[GtkChild]
 		Gtk.ComboBoxText cb_alignment;
+		[GtkChild]
+		Gtk.ComboBoxText cb_display_plug;
 		
 		[GtkChild]
 		Gtk.SpinButton sp_hide_delay;
 		[GtkChild]
 		Gtk.SpinButton sp_unhide_delay;
-		[GtkChild]
-		Gtk.Scale s_offset;
 
 		[GtkChild]
 		Gtk.Adjustment adj_hide_delay;
@@ -186,7 +184,6 @@ namespace Plank
 		void alignment_changed (Gtk.ComboBox widget)
 		{
 			prefs.Alignment = (Gtk.Align) int.parse (widget.get_active_id ());
-			s_offset.sensitive = (prefs.Alignment == Gtk.Align.CENTER);
 		}
 		
 		void hide_toggled (GLib.Object widget, ParamSpec param)
